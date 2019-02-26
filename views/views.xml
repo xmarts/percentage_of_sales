@@ -1,0 +1,15 @@
+<odoo>
+  <data>
+   <record id = "inherit_campos_nuevos" model = "ir.ui.view">
+     <field name = "name">inherit_campos_nuevos</field>
+     <field name = "model">sale.order</field> 
+     <field name = "inherit_id" ref = "sale.view_order_form"/> 
+     <field name = "arch" type = "xml">
+      <xpath expr="//field[@name = 'partner_id']" position="after">
+      	<field name="metodo_pago" placeholder="Tipo pago"/>
+      	<field name="carga" placeholder="Carga agregada"/>
+      </xpath>
+ </field>
+ </record>
+</data>
+</odoo>
