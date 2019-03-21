@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+	<t t-extend="PaymentScreen-Paymentlines">
+		<t t-jquery="colgroup col.tendered" t-operation="after">
+            <t t-if="widget.pos.config.enable_card_charges">
+                <col class='payment_charge' />
+            </t>
+        </t>
+        <t t-jquery="table.paymentlines thead" t-operation="replace">
+            <thead>
+                <tr class='label'>
+                    <th>Due</th>
+                    <th>Tendered</th>
+                    <t t-if="widget.pos.config.enable_card_charges">
+                        <th>Payment Charge</th>
+                    </t>
+                    <th>Change</th>
+                    <th>Method</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </t>
+        <t t-jquery="[t-if='line.selected'] td.col-tendered.edit" t-operation="after">
+            <t t-if="widget.pos.config.enable_card_charges">
+                <t t-if="line.cashregister.journal.apply_charges and line.cashregister.journal.optional">
+                    <td class='col-payment_charge edit_payment_charge'>
+<!-- 		                                	<t t-esc="line.get_payment_charge()" /> -->
+                        <input class="payment_charge_input" type="text" t-att-value="line.get_payment_charge()" />
+                    </td>
+                </t>
+                <t t-if="line.cashregister.journal.apply_charges and !line.cashregister.journal.optional">
+                    <td class='col-payment_charge'>
+<!-- 	                                		<t t-esc="line.get_payment_charge()" /> -->
+                        <input class="payment_charge_input" type="text" t-att-value="line.get_payment_charge()" readonly="true"/>
+                    </td>
+                </t>
+                <t t-if="!line.cashregister.journal.apply_charges">
+                    <td class='col-payment_charge'>
+                    N/A
+                    </td>
+                </t>
+            </t>
+        </t>
+        <t t-jquery="[t-if='!line.selected'] td.col-tendered" t-operation="after">
+            <t t-if="widget.pos.config.enable_card_charges">
+                 <t t-if="line.cashregister.journal.apply_charges and line.cashregister.journal.optional">
+                    <td class='col-payment_charge'>
+<!-- 		                                	<t t-esc="line.get_payment_charge()" /> -->
+                        <input class="payment_charge_input" type="text" t-att-value="line.get_payment_charge()" />
+                    </td>
+                </t>
+                <t t-if="line.cashregister.journal.apply_charges and !line.cashregister.journal.optional">
+                    <td class='col-payment_charge'>
+<!-- 	                                		<t t-esc="line.get_payment_charge()" /> -->
+                        <input class="payment_charge_input" type="text" t-att-value="line.get_payment_charge()" />
+                    </td>
+                </t>
+                <t t-if="!line.cashregister.journal.apply_charges">
+                    <td class='col-payment_charge'>
+                    N/A
+                    </td>
+                </t>
+            </t>
+        </t>
+	</t>
+
+</templates>
