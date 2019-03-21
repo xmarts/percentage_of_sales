@@ -5,5 +5,7 @@ class account_journal(models.Model):
 
     aplicar_cargos = fields.Boolean("Aplicar Cargos")
     fees_cantidad = fields.Float("Cantidad")
-    fees_tipo = fields.Selection(selection=[('fixed','Fixed'),('percentage','Porcentage')],string="Tipo tarifa", default="fixed")
+    fees_tipo = fields.Selection(selection=[
+    	('fixed','Fixed'),('percentage','Porcentage')
+    	],string="Tipo tarifa", default="fixed")
     

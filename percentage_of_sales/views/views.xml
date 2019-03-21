@@ -1,15 +1,30 @@
 <odoo>
   <data>
-   <record id = "inherit_campos_nuevos" model = "ir.ui.view">
-     <field name = "name">inherit_campos_nuevos</field>
-     <field name = "model">sale.order</field> 
-     <field name = "inherit_id" ref = "sale.view_order_form"/> 
-     <field name = "arch" type = "xml">
+
+    <record id = "inherit_campos_nuevos" model = "ir.ui.view">
+      <field name = "name">inherit_campos_nuevos</field>
+      <field name = "model">sale.order</field> 
+      <field name = "inherit_id" ref = "sale.view_order_form"/> 
+      <field name = "arch" type = "xml">
       <xpath expr="//field[@name = 'partner_id']" position="after">
       	<field name="metodo_pago" placeholder="Tipo pago"/>
       	<field name="carga" placeholder="Carga agregada"/>
       </xpath>
- </field>
- </record>
-</data>
+    </field>
+  </record>
+  
+  <record id = "inherit_camp_carg" model = "ir.ui.view">
+      <field name="name">inherit_camp_carg</field>
+      <field name="model">account.invoice</field> 
+      <field name="inherit_id" ref="account.invoice_form"/> 
+      <field name="arch" type = "xml">
+      <xpath expr="//field[@name='l10n_mx_edi_payment_method_id']" position="after">
+        <field name="carg_ret" placeholder="Carga agregada" readonly="1"/>
+      </xpath>
+    </field>
+  </record>
+
+
+  </data>
+
 </odoo>
