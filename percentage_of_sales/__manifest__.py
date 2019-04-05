@@ -27,6 +27,7 @@
         'views/templates.xml',
         'data/product.xml',
         'views/account_view.xml',
+        'reports/factura.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
